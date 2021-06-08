@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild("loginForm")
+  loginForm : NgForm;
+
+  constructor(private loadingSpinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
 
+  onSubmitLogin(){
+    this.loadingSpinner.show();
+    setTimeout(()=>{
+      this.loginForm.resetForm();
+      this.loadingSpinner.hide();
+    }, 3000);
+  }
 }

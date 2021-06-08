@@ -15,15 +15,25 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" (ngSubmit) = "onSubmitLogin()" #loginForm = "ngForm">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                        <input type="email" 
+                                                class="form-control form-control-user"
+                                            id="email" 
+                                            aria-describedby="emailHelp"
+                                            name="email"
+                                            ngModel
+                                            minlength="1"
                                             placeholder="Enter Email Address...">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                            id="password"
+                                            name="password"
+                                            ngModel
+                                            required
+                                            minlength="1"
+                                            placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
@@ -32,10 +42,12 @@
                                                 Me</label>
                                         </div>
                                     </div>
-                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                        Login
-                                    </a>
+                                    <button class="btn btn-primary btn-user btn-block"
+                                            [disabled]="!loginForm.valid">Login</button>
                                     <hr>
+                                    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                                        <p style="color: white">Please Wait. </p>  
+                                    </ngx-spinner>    
                                 </form>
                                 <div class="text-center">
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>

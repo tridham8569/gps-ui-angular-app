@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-account',
@@ -9,18 +10,18 @@ import { NgForm } from '@angular/forms';
 export class CreateAccountComponent implements OnInit {
 
   @ViewChild('registrationForm')
-  registrationForm : NgForm;
+  registrationForm: NgForm;
 
-  constructor() { }
+  constructor(private loadingSpinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
-    alert('Account will be created with below details : \n' 
-            +this.registrationForm.value.firstName+'\n'
-            +this.registrationForm.value.lastName+'\n'
-            +this.registrationForm.value.email);
-    this.registrationForm.reset;
+  onSubmit() {
+    this.loadingSpinner.show();
+    setTimeout(() => {
+      this.registrationForm.resetForm();
+      this.loadingSpinner.hide();
+    }, 5000);
   }
 }
