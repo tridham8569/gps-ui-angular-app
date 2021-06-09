@@ -13,7 +13,12 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <div class="d-block d-lg-none">
+                                        <img src="/gps_logo.png" alt="gps_logo" height="200Px" width="200px">
+                                    </div>
+                                     <h5 class="m-0 text-primary">Gangaputra Sangam, Lalapet</h5>                                 <hr>
+                                    <span class="big">Login</span>
+                                    <hr>
                                 </div>
                                 <form class="user" (ngSubmit) = "onSubmitLogin()" #loginForm = "ngForm">
                                     <div class="form-group">
@@ -50,7 +55,7 @@
                                     </ngx-spinner>    
                                 </form>
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    <a class="small" routerLink="/forgot-password">Forgot Password?</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="small" routerLink="/userRegistration">Create an Account!</a>

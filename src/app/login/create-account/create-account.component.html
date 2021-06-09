@@ -7,9 +7,12 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h1 text-gray-900 mb-4">Gangaputra Sangam, Lalapet</h1>
+                            <div class="d-block d-lg-none">
+                                <img src="/gps_logo.png" alt="gps_logo" height="200Px" width="200px">
+                            </div>
+                            <h5 class="m-0 text-primary">Gangaputra Sangam, Lalapet</h5>                                 <hr>
                             <br>
-                            <h2>Create an account!</h2>
+                            <h4 class="h4 text-gray-600 mb-4">Create an account!</h4>
                             <br>
                         </div>
                         <form class="user" (ngSubmit)="onSubmit()" #registrationForm="ngForm">
@@ -49,7 +52,7 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="#">Forgot Password?</a>
+                            <a class="small" routerLink="/forgot-password">Forgot Password?</a>
                         </div>
                         <div class="text-center">
                             <a class="small" routerLink="/login">Already have an account? Login!</a>
