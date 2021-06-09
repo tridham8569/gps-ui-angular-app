@@ -14,7 +14,7 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <div class="d-block d-lg-none">
-                                        <img src="/gps_logo.png" alt="gps_logo" height="200Px" width="200px">
+                                        <img src="gps_logo.png" alt="gps_logo" height="200Px" width="200px">
                                     </div>
                                      <h5 class="m-0 text-primary">Gangaputra Sangam, Lalapet</h5>                                 <hr>
                                     <span class="big">Login</span>
@@ -22,9 +22,9 @@
                                 </div>
                                 <form class="user" (ngSubmit) = "onSubmitLogin()" #loginForm = "ngForm">
                                     <div class="form-group">
-                                        <input type="email" 
+                                        <input type="email"
                                                 class="form-control form-control-user"
-                                            id="email" 
+                                            id="email"
                                             aria-describedby="emailHelp"
                                             name="email"
                                             ngModel
@@ -50,9 +50,9 @@
                                     <button class="btn btn-primary btn-user btn-block"
                                             [disabled]="!loginForm.valid">Login</button>
                                     <hr>
-                                    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-                                        <p style="color: white">Please Wait. </p>  
-                                    </ngx-spinner>    
+                                    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+                                        <p style="color: white">Please Wait. </p>
+                                    </ngx-spinner>
                                 </form>
                                 <div class="text-center">
                                     <a class="small" routerLink="/forgot-password">Forgot Password?</a>
