@@ -10,45 +10,76 @@
                             <div class="d-block d-lg-none">
                                 <img src="assets/img/gps_logo.png" alt="gps_logo" height="200Px" width="200px">
                             </div>
-                            <h5 class="m-0 text-primary">Gangaputra Sangam, Lalapet</h5>                                 <hr>
+                            <h5 class="m-0 text-primary">Gangaputra Sangam, Lalapet</h5>
+                            <hr>
                             <br>
                             <h4 class="h4 text-gray-600 mb-4">Create an account!</h4>
                             <br>
                         </div>
                         <form class="user" (ngSubmit)="onSubmit()" #registrationForm="ngForm">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="firstName"
-                                        name="firstName" ngModel placeholder="First Name" required>
+                            <div id="newUserData" ngModelGroup="userData">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="firstName"
+                                            name="firstName" ngModel placeholder="First Name" required>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="lastName"
+                                            name="lastName" ngModel placeholder="Last Name" required>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="lastName"
-                                        name="lastName" ngModel placeholder="Last Name" required>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control form-control-user" name="mobile" ngModel
+                                        minlength="1" maxlength="10" placeholder="mobile number">
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user" id="password"
+                                            name="password" ngModel required 
+                                            #password="ngModel" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="repeatPassword" name="repeatPassword" ngModel required
+                                            #repeatPassword="ngModel" placeholder="Repeat Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row"  style="padding-left: 50px;">
+                                    <div class="col-sm-8">
+                                        <div>
+                                            <input class="form-check-input" 
+                                                    type="radio" name="gender" 
+                                                    id="gridRadios1" 
+                                                    value="male" 
+                                                    ngModel
+                                                    required>
+                                            <label class="form-check-label" for="gridRadios1">
+                                              male
+                                            </label>
+                                          </div>
+                                          <div>
+                                            <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="female" ngModel required>
+                                            <label class="form-check-label" for="gridRadios2">
+                                              female
+                                            </label>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <span style="padding: 10px; color: red;"
+                                        *ngIf="(password.value != repeatPassword.value) && (repeatPassword.touched)">*
+                                        Passwords should match</span>
+                                    <span style="padding: 10px; color: red;" 
+                                          *ngIf="errorMessage.length > 0">
+                                        {{errorMessage}}</span>
+                                </div>
+                                <button class="btn btn-primary btn-user btn-block" type="submit"
+                                    [disabled]="!registrationForm.valid">Register Account</button>
+                                <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd"
+                                    type="ball-clip-rotate-pulse" [fullScreen]="true">
+                                    <p style="color: white"> Signing In... </p>
+                                </ngx-spinner>
                             </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control form-control-user" id="email" name="email"
-                                    ngModel required placeholder="Email Address" required>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" id="password"
-                                        name="password" ngModel required placeholder="Password">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user" id="repeatPassword"
-                                        name="repeatPassword" ngModel required #repeatPassword="ngModel"
-                                        placeholder="Repeat Password">
-                                </div>
-                                <span style="padding: 10px; color: red;"
-                                    *ngIf="(registrationForm.value.password != registrationForm.value.repeatPassword) && (repeatPassword.touched)">*
-                                    Passwords should match</span>
-                            </div>
-                            <button class="btn btn-primary btn-user btn-block" type="submit"
-                                [disabled]="!registrationForm.valid">Register Account</button>
-                            <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-                                <p style="color: white">Please Wait. </p>
-                            </ngx-spinner>
                         </form>
                         <hr>
                         <div class="text-center">

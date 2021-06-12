@@ -1,0 +1,55 @@
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#personalDetailsCard" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true"
+        aria-controls="personalDetailsCard">
+        <h6 class="m-0 font-weight-bold text-primary">Update personal details</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="personalDetailsCard">
+        <div class="card-body">
+            <form class="user" (ngSubmit)="updateProfile()" #profileUpdateForm="ngForm">
+                <div id="profileData" ngModelGroup="profileData">
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="text" class="form-control form-control-user" id="firstName" name="p_firstName"
+                                ngModel placeholder="First Name" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control form-control-user" id="lastName" name="p_lastName"
+                                ngModel placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control form-control-user" name="p_mobile" ngModel minlength="1"
+                            maxlength="10" placeholder="mobile number">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control form-control-user" name="p_email" ngModel
+                            placeholder="email">
+                    </div>
+                    <button class="btn btn-primary btn-user btn-block" type="submit" [disabled]="false">Update</button>
+                    <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd"
+                        type="ball-clip-rotate-pulse" [fullScreen]="false">
+                        <p style="color: white"> updating... </p>
+                    </ngx-spinner>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<hr> <!--Profile picture Update -->
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Accordion -->
+    <a href="#profilePicCard" class="d-block card-header py-3" data-toggle="collapse"
+        role="button" aria-expanded="true" aria-controls="profilePicCard">
+        <h6 class="m-0 font-weight-bold text-primary">Update profile picture</h6>
+    </a>
+    <!-- Card Content - Collapse -->
+    <div class="collapse show" id="profilePicCard">
+        <div class="card-body">
+            Profile Picture
+        </div>
+    </div>
+</div>

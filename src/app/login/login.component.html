@@ -16,42 +16,38 @@
                                     <div class="d-block d-lg-none">
                                         <img src="assets/img/gps_logo.png" alt="gps_logo" height="200Px" width="200px">
                                     </div>
-                                     <h5 class="m-0 text-primary">Gangaputra Sangam, Lalapet</h5>                                 <hr>
+                                    <h5 class="m-0 text-primary">Gangaputra Sangam, Lalapet</h5>
+                                    <hr>
                                     <span class="big">Login</span>
                                     <hr>
                                 </div>
-                                <form class="user" (ngSubmit) = "onSubmitLogin()" #loginForm = "ngForm">
+                                <form class="user" (ngSubmit)="onSubmitLogin(loginForm)" #loginForm="ngForm">
                                     <div class="form-group">
-                                        <input type="email"
-                                                class="form-control form-control-user"
-                                            id="email"
-                                            aria-describedby="emailHelp"
-                                            name="email"
-                                            ngModel
-                                            minlength="1"
-                                            placeholder="Enter Email Address...">
+                                        <input type="tel" class="form-control form-control-user" name="phoneNumber"
+                                            ngModel minlength="1" maxlength="10" placeholder="mobile number">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="password"
-                                            name="password"
-                                            ngModel
-                                            required
-                                            minlength="1"
-                                            placeholder="Password">
+                                        <input type="password" class="form-control form-control-user" id="password"
+                                            name="password" ngModel required minlength="1" placeholder="Password">
+                                        
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
+                                            <p style="color:red;" class="help-block" ngModel>{{errorMessage}}</p>
                                             <input type="checkbox" class="custom-control-input" id="customCheck">
                                             <label class="custom-control-label" for="customCheck">Remember
                                                 Me</label>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-user btn-block"
-                                            [disabled]="!loginForm.valid">Login</button>
+                                        [disabled]="!loginForm.valid">Login</button>
                                     <hr>
-                                    <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
-                                        <p style="color: white">Please Wait. </p>
+                                    <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                                        <p style="color: white">Please Wait. </p>  
+                                    </ngx-spinner>     -->
+                                    <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd"
+                                        type="ball-clip-rotate-pulse" [fullScreen]="true">
+                                        <p style="color: white"> Signing In... </p>
                                     </ngx-spinner>
                                 </form>
                                 <div class="text-center">
