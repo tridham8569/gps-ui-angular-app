@@ -9,7 +9,7 @@ import { NewUser } from "./create-account/newUser.model";
 })
 export class HttpUserAuthService{
 
-    gpsServerAppUrl:string = "https://jaibheem.herokuapp.com";
+    gpsServerAppUrl:string = "https://jaibheem.herokuapp.com/";
 
     constructor(private http:HttpClient){
 
