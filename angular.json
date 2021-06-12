@@ -38,8 +38,8 @@
               "gpsJS/vendor/jquery-easing/jquery.easing.min.js",
               "gpsJS/vendor/js/sb-admin-2.js",
               "gpsJS/vendor/chartjs/Chart.min.js",
-              "gpsJS/js/demo/chart-area-demo.js",
-              "gpsJS/js/demo/chart-pie-demo.js"
+              "gpsJS/vendor/js/demo/chart-area-demo.js",
+              "gpsJS/vendor/js/demo/chart-pie-demo.js"
             ]
           },
           "configurations": {
