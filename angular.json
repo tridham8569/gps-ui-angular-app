@@ -29,17 +29,10 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "gpsCSS/sb-admin-2.css",
-              "src/assets/gpsJS/vendor/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
-              "src/assets/gpsJS/vendor/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/gpsJS/vendor/jquery-easing/jquery.easing.min.js",
-              "src/assets/gpsJS/vendor/js/sb-admin-2.js",
-              "src/assets/gpsJS/vendor/chartjs/Chart.min.js",
-              "src/assets/gpsJS/vendor/js/demo/chart-area-demo.js",
-              "src/assets/gpsJS/vendor/js/demo/chart-pie-demo.js"
+              
             ]
           },
           "configurations": {
