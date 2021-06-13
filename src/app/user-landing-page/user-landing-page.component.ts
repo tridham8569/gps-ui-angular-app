@@ -20,6 +20,7 @@ export class UserLandingPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onToggle();
     this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     this.validateLocalStorageLogin();
     this.setProfile();
