@@ -26,10 +26,10 @@ export class UserLandingPageComponent implements OnInit {
   }
 
   onToggle() {
-    $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");
-    if ($(".sidebar").hasClass("toggled")) {
-      $('.sidebar .collapse').collapse('hide');
+    jquery("body").toggleClass("sidebar-toggled");
+    jquery(".sidebar").toggleClass("toggled");
+    if (jquery(".sidebar").hasClass("toggled")) {
+      jquery('.sidebar .collapse').collapse('hide');
     };
   }
 
