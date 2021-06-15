@@ -29,7 +29,6 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit() {
     this.newUserData = this.registrationForm.value.userData;
-    console.log(this.registrationForm.value.userData);
     this.loadingSpinner.show();
     this.newUserData.userName = this.newUserData.mobile;
     this.httpUserAuthService.register(this.newUserData).subscribe(

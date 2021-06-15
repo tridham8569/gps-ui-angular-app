@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     {
       path: ':id', component: UserLandingPageComponent, children:[
         {path:'', component: WelcomeDashboardComponent, pathMatch:'full'},
-        {path:'profileUpdate', component:ProfileUpdateComponent}
+        {path:'profileUpdate', component:ProfileUpdateComponent, pathMatch:'full'}
       ]
     }
 ]

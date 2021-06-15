@@ -1,7 +1,10 @@
+import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { LoggedInUser } from 'src/app/loggedInUser.model';
+import { HttpUserProfileService } from '../http-user-profile.service';
 
 @Component({
   selector: 'app-profile-update',
@@ -11,33 +14,79 @@ import { LoggedInUser } from 'src/app/loggedInUser.model';
 export class ProfileUpdateComponent implements OnInit {
 
   loggedInUser: LoggedInUser;
+
   fullName: string;
+  errorMessage: string;
+
+  pageActionNgxSpinnerText:string;
 
   @ViewChild('profileUpdateForm')
-  profileUpdateForm:NgForm;
+  profileUpdateForm: NgForm;
 
-  constructor(private ngxLoadingSpinner:NgxSpinnerService) { }
+  imageSrc: string;
+  profilePicUploadForm = new FormGroup({
+    file: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required])
+  });
+
+  constructor(private httpUserProfileService: HttpUserProfileService,
+    private ngxSpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    this.prePopulateDefails();
   }
 
-  updateProfile(){
-    this.ngxLoadingSpinner.show();
+  updateProfile() {
+    console.log(this.profileUpdateForm);
+    this.pageActionNgxSpinnerText = "Updating....";
+    this.ngxSpinnerService.show();
+    this.httpUserProfileService.updateProfileDetails(this.loggedInUser).subscribe(
+      (response: {
+        userName: string;
+        firstName: string;
+        lastName: string;
+        mobile: string;
+        gender: string;
+        email?: string;
+        address?: string;
+      }) => {
+        this.loggedInUser.gpsUsers = response;
+        localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+        this.ngxSpinnerService.hide();
+
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+        this.ngxSpinnerService.hide();
+      }
+    );
+  }
+
+
+  onFileChange(event) {
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        this.profilePicUploadForm.patchValue({
+          fileSource: reader.result
+        });
+      };
+    }
+  }
+
+  upload(){
+    this.ngxSpinnerService.show();
+    const writer = new WritableStream();
+    writer.getWriter
     setTimeout(() => {
-      console.log(this.profileUpdateForm);
-      this.ngxLoadingSpinner.hide();
-    }, 1000);
+      this.pageActionNgxSpinnerText = "Uploading....";
+      console.log(this.profilePicUploadForm.value);
+      this.ngxSpinnerService.hide();
+    }, 1);
   }
 
-  prePopulateDefails(){
-    this.ngxLoadingSpinner.show();
-    this.fullName = this.loggedInUser.gpsUser.firstName+' '+this.loggedInUser.gpsUser.lastName;
-    this.ngxLoadingSpinner.hide();
-    // this.profileUpdateForm.value.profileData.p_firstName = this.loggedInUser.gpsUser.firstName;
-    // this.profileUpdateForm.value.profileData.p_lastName = this.loggedInUser.gpsUser.lastName;
-    // this.profileUpdateForm.value.profileData.p_mobile = this.loggedInUser.gpsUser.mobile;
-    
-  }
 }

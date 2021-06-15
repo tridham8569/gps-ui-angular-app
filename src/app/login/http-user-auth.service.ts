@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
+import { GPSConstans } from "../gps-constants.service";
 import { LoggedInUser } from "../loggedInUser.model";
 import { NewUser } from "./create-account/newUser.model";
 
@@ -9,14 +10,13 @@ import { NewUser } from "./create-account/newUser.model";
 })
 export class HttpUserAuthService{
 
-    gpsServerAppUrl:string = "https://jaibheem.herokuapp.com/";
-
-    constructor(private http:HttpClient){
+    constructor(private http:HttpClient,
+                private gpsConstants:GPSConstans){
 
     }
 
     login(userName:string, password:string){
-    return this.http.post<LoggedInUser>(this.gpsServerAppUrl+'authenticate', {
+    return this.http.post<LoggedInUser>(this.gpsConstants.gpsServerAppUrl+'authenticate', {
             'userName': userName,
             'password': password
           }).pipe(map(
@@ -28,7 +28,7 @@ export class HttpUserAuthService{
     }
 
     register(newUserData: NewUser){
-      return this.http.post(this.gpsServerAppUrl+'users/register',
+      return this.http.post(this.gpsConstants.gpsServerAppUrl+'users/register',
       newUserData);
     }
 }

@@ -40,13 +40,13 @@ export class UserLandingPageComponent implements OnInit {
   }
 
   setProfile() {
-    this.fullName = this.loggedInUser.gpsUser.firstName + " " + this.loggedInUser.gpsUser.lastName;
-    this.userProfilePic = this.loggedInUser.gpsUser.gender == 'male' ? this.defaultPics.male : this.defaultPics.female;
+    this.fullName = this.loggedInUser.gpsUsers.firstName + " " + this.loggedInUser.gpsUsers.lastName;
+    this.userProfilePic = this.loggedInUser.gpsUsers.gender == 'male' ? this.defaultPics.male : this.defaultPics.female;
   }
 
   validateLocalStorageLogin() {
-    if (this.loggedInUser === null || this.loggedInUser.gpsUser.userName !== this.route.snapshot.params['id']) {
-      this.logOut();
-    }
+     if (this.loggedInUser === null || this.loggedInUser.gpsUsers.userName !== this.route.snapshot.params['id']) {
+       this.logOut();
+     }
   }
 }

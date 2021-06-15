@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('loggedInUser') != null) {
       this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-      if (this.route.snapshot.params['id'] === this.loggedInUser.gpsUser.userName) {
-        this.router.navigate(['/' + this.loggedInUser.gpsUser.userName]);
+      if (this.route.snapshot.params['id'] === this.loggedInUser.gpsUsers.userName) {
+        this.router.navigate(['/' + this.loggedInUser.gpsUsers.userName]);
       }
     }
   }

@@ -1,7 +1,7 @@
 <div id="wrapper">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#"
-            [routerLink]="['/',loggedInUser.gpsUser.userName]">
+            [routerLink]="['/',loggedInUser.gpsUsers.userName]">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-fish"></i>
             </div>
@@ -9,7 +9,7 @@
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['/',loggedInUser.gpsUser.userName]">
+            <a class="nav-link" [routerLink]="['/',loggedInUser.gpsUsers.userName]">
                 <i class="fas fa-solid fa-house-user"></i>
                 <span>Home</span></a>
         </li>
@@ -148,12 +148,12 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" [routerLink]="['/',loggedInUser.gpsUser.userName,'profileUpdate']">
+                            <a class="dropdown-item" [routerLink]="['/',loggedInUser.gpsUsers.userName,'profileUpdate']">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-800"></i>
                                 Profile Update
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" [routerLink]="['/',loggedInUser.gpsUser.userName,'profileUpdate']">
+                            <a class="dropdown-item" [routerLink]="['/',loggedInUser.gpsUsers.userName,'profileUpdate']">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-800"></i>
                                 My Chitfund
                             </a>
@@ -166,10 +166,10 @@
                     </li>
                 </ul>
             </nav>
+        </div>
         <div class="container-fluid">
             <!-- maincontent -->
             <router-outlet></router-outlet>
         </div>
-    </div>
     </div>
 </div>
