@@ -18,4 +18,8 @@ export class HttpUserProfileService {
                  loggedInUser.gpsUsers
                  );
     }
+    
+    uploadProfilePicInBody(userName:string, imageSrc:string){
+        return this.http.post<any>(this.gpsConstants.gpsServerAppUrl+"users/"+userName+"/uploadImage", imageSrc);
+     }
 }

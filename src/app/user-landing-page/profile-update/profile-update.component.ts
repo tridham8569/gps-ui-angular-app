@@ -1,10 +1,11 @@
 import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, SystemJsNgModuleLoader, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { GPSConstans } from 'src/app/gps-constants.service';
 import { LoggedInUser } from 'src/app/loggedInUser.model';
 import { HttpUserProfileService } from '../http-user-profile.service';
+
 
 @Component({
   selector: 'app-profile-update',
@@ -23,6 +24,11 @@ export class ProfileUpdateComponent implements OnInit {
   @ViewChild('profileUpdateForm')
   profileUpdateForm: NgForm;
 
+  uploadMessage:string = "";
+  
+  @Output('userProfilePic')
+  landingPageProfilePic:string;
+
   imageSrc: string;
   profilePicUploadForm = new FormGroup({
     file: new FormControl('', [Validators.required]),
@@ -34,6 +40,7 @@ export class ProfileUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    this.imageSrc = this.loggedInUser.gpsUsers.profilePic;
   }
 
   updateProfile() {
@@ -79,14 +86,19 @@ export class ProfileUpdateComponent implements OnInit {
   }
 
   upload(){
+    this.pageActionNgxSpinnerText = "Uploading....";
     this.ngxSpinnerService.show();
-    const writer = new WritableStream();
-    writer.getWriter
-    setTimeout(() => {
-      this.pageActionNgxSpinnerText = "Uploading....";
-      console.log(this.profilePicUploadForm.value);
-      this.ngxSpinnerService.hide();
-    }, 1);
+    const formData = new FormData();
+    this.httpUserProfileService.uploadProfilePicInBody(this.loggedInUser.gpsUsers.userName, this.imageSrc).subscribe(
+      (response) => {
+        this.loggedInUser.gpsUsers.profilePic = this.imageSrc;
+        localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+        this.uploadMessage = "Uploaded Successfully";
+        this.landingPageProfilePic = this.imageSrc;
+        console.log(this.imageSrc);
+        this.ngxSpinnerService.hide();
+      }
+    );
   }
 
 }

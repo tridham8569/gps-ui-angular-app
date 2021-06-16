@@ -22,6 +22,7 @@ export class UserLandingPageComponent implements OnInit {
   ngOnInit(): void {
     this.onToggle();
     this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
     this.validateLocalStorageLogin();
     this.setProfile();
   }
@@ -41,7 +42,12 @@ export class UserLandingPageComponent implements OnInit {
 
   setProfile() {
     this.fullName = this.loggedInUser.gpsUsers.firstName + " " + this.loggedInUser.gpsUsers.lastName;
-    this.userProfilePic = this.loggedInUser.gpsUsers.gender == 'male' ? this.defaultPics.male : this.defaultPics.female;
+    if(this.loggedInUser.gpsUsers.profilePic === undefined || this.loggedInUser.gpsUsers.profilePic === null){
+      this.userProfilePic = this.loggedInUser.gpsUsers.gender == 'male' ? this.defaultPics.male : this.defaultPics.female;
+      this.loggedInUser.gpsUsers.profilePic = this.userProfilePic;
+    }else{
+      this.userProfilePic = this.loggedInUser.gpsUsers.profilePic;
+    }
   }
 
   validateLocalStorageLogin() {

@@ -8,5 +8,6 @@ export interface LoggedInUser {
         gender: string;
         email?:string;
         address?:string;
+        profilePic?:string;
     }
 }

@@ -16,12 +16,15 @@ export class HttpUserAuthService{
     }
 
     login(userName:string, password:string){
-    return this.http.post<LoggedInUser>(this.gpsConstants.gpsServerAppUrl+'authenticate', {
+    return this.http.post<any>(this.gpsConstants.gpsServerAppUrl+'authenticate', {
             'userName': userName,
             'password': password
           }).pipe(map(
             (responseData)=>{
               localStorage.setItem('loggedInUser', JSON.stringify(responseData));
+              if(responseData.gpsUsers.profilePic !== undefined){
+                localStorage.setItem('LoggedInUserProfilePic',"data:image/jpeg;base64,"+responseData.gpsUsers.profilePic.data);
+              }
               return <LoggedInUser>responseData;
             }
           ));

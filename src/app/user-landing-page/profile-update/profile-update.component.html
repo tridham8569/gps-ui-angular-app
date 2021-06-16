@@ -82,8 +82,10 @@
                                 <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
                             </div>
                         </div> 
+                        <div class="form-group" style="text-align: center;">
+                            <p *ngIf = "errorMessage !== null" class="small" [ngStyle]="{'color':uploadMessage === 'Uploaded Successfully' ? 'green' : 'red' }">{{uploadMessage}}</p>
+                        </div>
                         <button class="btn btn-primary btn-user btn-block" type="submit">Upload</button>
-
                     </form>
                 </div>
             </div>
