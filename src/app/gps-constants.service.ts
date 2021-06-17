@@ -4,6 +4,6 @@ import { Injectable } from "@angular/core";
     providedIn:"root"
 })
 export class GPSConstans{
-    //gpsServerAppUrl:string = "https://jaibheem.herokuapp.com/";
-    gpsServerAppUrl:string = "http://localhost:8081/";
+    gpsServerAppUrl:string = "https://jaibheem.herokuapp.com/";
+    //gpsServerAppUrl:string = "http://localhost:8081/";
 }
