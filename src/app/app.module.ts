@@ -15,6 +15,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileUpdateComponent } from './user-landing-page/profile-update/profile-update.component';
 import { WelcomeDashboardComponent } from './user-landing-page/welcome-dashboard/welcome-dashboard.component';
 import { HttpTokenInterceptor } from './user-landing-page/http-tokenInterceptor.service';
+import { MemberMaintenanceComponent } from './user-landing-page/member-maintenance/member-maintenance.component';
+import { MemberItemComponent } from './user-landing-page/member-maintenance/member-item/member-item.component';
+import { MemberItmesListComponent } from './user-landing-page/member-maintenance/member-itmes-list/member-itmes-list.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { HttpTokenInterceptor } from './user-landing-page/http-tokenInterceptor.
     ForgotPasswordComponent,
     UserLandingPageComponent,
     ProfileUpdateComponent,
-    WelcomeDashboardComponent
+    WelcomeDashboardComponent,
+    MemberMaintenanceComponent,
+    MemberItemComponent,
+    MemberItmesListComponent
   ],
   imports: [
     BrowserModule,

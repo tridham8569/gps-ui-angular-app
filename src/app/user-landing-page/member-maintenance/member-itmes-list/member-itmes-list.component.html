@@ -1,0 +1,16 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd"
+    type="ball-clip-rotate-pulse" [fullScreen]="true">
+    <p style="color: white">{{pageActionNgxSpinnerText}}</p>
+    </ngx-spinner>
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">All Members</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-3" *ngFor="let member of membersList">
+            <app-member-item [member]="member"></app-member-item>
+        </div>
+    </div>
+</div>

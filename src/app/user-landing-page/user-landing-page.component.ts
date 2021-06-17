@@ -55,4 +55,9 @@ export class UserLandingPageComponent implements OnInit {
        this.logOut();
      }
   }
+
+  navigateToAllMembersList(){
+    this.onToggle();
+    this.router.navigate(['/',this.loggedInUser.gpsUsers.userName,'allMembersList']);
+  }
 }

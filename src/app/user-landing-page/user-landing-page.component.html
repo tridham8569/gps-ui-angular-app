@@ -31,8 +31,10 @@
                         Member</a>
                     <a class="collapse-item" href="buttons.html"><i class="fas fa-solid fa-address-card"></i> Update
                         Member Details</a>
-                    <a class="collapse-item" href="buttons.html"><i class="fas fa-solid fa-address-book"></i> All
-                        Members List</a>
+                        <!-- <a class="collapse-item" [routerLink]="['/',loggedInUser.gpsUsers.userName,'allMembersList']"><i class="fas fa-solid fa-address-book"></i> All
+                            Members List</a> -->
+                            <a class="collapse-item" (click)="navigateToAllMembersList()"><i class="fas fa-solid fa-address-book"></i> All
+                                Members List</a>
                 </div>
             </div>
         </li>

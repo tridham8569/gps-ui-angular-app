@@ -1,0 +1,71 @@
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div
+        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{member.firstName}} {{member.lastName}}</h6>
+        <div class="dropdown no-arrow" [ngStyle]="{'display': '1' === '1' ? 'block' : 'none' }">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-cog fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Account related actions:</div>
+                <div class="dropdown-item">
+                    <a href="#" class="btn btn-danger btn-circle">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>&nbsp;&nbsp;
+                    Delete member
+                </div>
+                <div class="dropdown-item">
+                    <a href="#" class="btn btn-primary btn-circle">
+                        <i class="fas fa-edit"></i>
+                    </a>&nbsp;&nbsp;
+                    Update Member Details
+                </div>
+                <div class="dropdown-item">
+                    <a href="#" class="btn btn-primary btn-circle">
+                        <i class="fas fa-envelope"></i>
+                    </a>&nbsp;&nbsp;
+                    Send Notification
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-header">ChitFund related Actions:</div>
+                <div class="dropdown-item">
+                    <a href="#" class="btn btn-primary btn-circle">
+                        <i class="fas fa-wallet"></i>
+                    </a>&nbsp;&nbsp;
+                    Member holdings
+                </div>
+                <div class="dropdown-item">
+                    <a href="#" class="btn btn-primary btn-circle">
+                        <i class="fas fa-rupee-sign"></i>
+                    </a>&nbsp;&nbsp;
+                    Member Payments
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <!-- <div class="row">
+            <img class="img-profile rounded-circle" 
+                    [src]="member.profilePic" 
+                    title="user_profile_pic" style="height: 20%; width: 20%;">
+        </div> -->
+        <div class="row">
+            <div class="col">
+                <img class="img-profile rounded-circle" 
+                    [src]="member.profilePic" 
+                    title="user_profile_pic" style="height:10rem; width: 10rem;">
+            </div>
+            <div class="col small">
+                <p style="display: none;">{{member.userName}}</p>
+                <p>{{member.firstName}} {{member.lastName}}</p>
+                <p>Mobile: {{member.mobile}}</p>
+                <p>Email: {{member.email}}</p>
+                <p>Address: {{member.address}}</p>
+            </div>
+        </div>
+    </div>
+</div>

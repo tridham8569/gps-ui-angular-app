@@ -1,8 +1,8 @@
 import { HttpClient} from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { NgxSpinnerService } from "ngx-spinner";
 import { GPSConstans } from "../gps-constants.service";
 import { LoggedInUser } from "../loggedInUser.model";
+import { MembersList } from "./member-maintenance/members-list.model";
 
 @Injectable({
     providedIn: "root"
@@ -22,4 +22,12 @@ export class HttpUserProfileService {
     uploadProfilePicInBody(userName:string, imageSrc:string){
         return this.http.post<any>(this.gpsConstants.gpsServerAppUrl+"users/"+userName+"/uploadImage", imageSrc);
      }
+
+     getAllMemberProfiles(){
+        return this.http.get<MembersList>(this.gpsConstants.gpsServerAppUrl+"users/allUsers");
+    }
+
+    removeProfilePic(userName:string){
+        return this.http.get(this.gpsConstants.gpsServerAppUrl+"users/"+userName+"/removeProfilePic");
+    }
 }

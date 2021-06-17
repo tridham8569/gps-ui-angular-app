@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CreateAccountComponent } from "./login/create-account/create-account.component";
 import { ForgotPasswordComponent } from "./login/forgot-password/forgot-password.component";
 import { LoginComponent } from "./login/login.component";
+import { MemberItmesListComponent } from "./user-landing-page/member-maintenance/member-itmes-list/member-itmes-list.component";
 import { ProfileUpdateComponent } from "./user-landing-page/profile-update/profile-update.component";
 import { UserLandingPageComponent } from "./user-landing-page/user-landing-page.component";
 import { WelcomeDashboardComponent } from "./user-landing-page/welcome-dashboard/welcome-dashboard.component";
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
     {
       path: ':id', component: UserLandingPageComponent, children:[
         {path:'', component: WelcomeDashboardComponent, pathMatch:'full'},
-        {path:'profileUpdate', component:ProfileUpdateComponent, pathMatch:'full'}
+        {path:'profileUpdate', component:ProfileUpdateComponent, pathMatch:'full'},
+        {path: 'allMembersList', component: MemberItmesListComponent}
       ]
     }
 ]

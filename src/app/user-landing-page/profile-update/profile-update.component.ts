@@ -95,7 +95,6 @@ export class ProfileUpdateComponent implements OnInit {
         localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
         this.uploadMessage = "Uploaded Successfully";
         this.landingPageProfilePic = this.imageSrc;
-        console.log(this.imageSrc);
         this.ngxSpinnerService.hide();
       }
     );
