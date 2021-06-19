@@ -30,6 +30,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/gpsCSS/sb-admin-2.css",
               "src/assets/gpsJS/vendor/fontawesome-free/css/all.min.css",
+              "node_modules/cropperjs/dist/cropper.min.css",
               "src/styles.css"
             ],
             "scripts": [
