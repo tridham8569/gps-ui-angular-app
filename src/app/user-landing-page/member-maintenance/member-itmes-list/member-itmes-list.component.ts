@@ -18,7 +18,7 @@ export class MemberItmesListComponent implements OnInit {
               private ngxSpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
-    this.pageActionNgxSpinnerText = "Loading member profiles...";
+    this.pageActionNgxSpinnerText = "Loading profiles...";
     this.ngxSpinnerService.show();
     this.httpUserProfileService.getAllMemberProfiles().subscribe(
       (response:MembersList) => {

@@ -18,10 +18,9 @@ const appRoutes: Routes = [
     {
       path: ':id', component: UserLandingPageComponent, children:[
         {path:'', component: WelcomeDashboardComponent, pathMatch:'full'},
-        {path:'profileUpdate', component:ProfileUpdateComponent, children:[
-          {path:'uploadProfilePic', component:UploadProfilePicComponent, children:[
-            {path:'image', component: ImageCorpperComponent}
-          ]}
+        {path:'profileUpdate', component:ProfileUpdateComponent},
+        {path:'uploadProfilePic', component:UploadProfilePicComponent, children:[
+          {path:'image', component: ImageCorpperComponent}
         ]},
         {path: 'allMembersList', component: MemberItmesListComponent}
       ]
