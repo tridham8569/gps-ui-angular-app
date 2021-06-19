@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="img-container">
+            <img #image [src]="imageSource" crossorigin style="width: 100px; height: 100px;">
+        </div>
+        <img [src]="imageDestination" class="img-preview">
+    </div>
+    <div class="row">
+        <br>
+    </div>
+    <div class="row">
+        <button class="btn btn-primary btn-user btn-block" (click)="uploadImage()" style="width: 30%;">Upload</button>
+    </div>
+    <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd" type="ball-clip-rotate-pulse"
+        [fullScreen]="false">
+        <p style="color: white">{{pageActionNgxSpinnerText}}</p>
+    </ngx-spinner>
+</div>

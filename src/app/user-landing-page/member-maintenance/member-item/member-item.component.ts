@@ -15,7 +15,6 @@ export class MemberItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.member);
   }
 
 }

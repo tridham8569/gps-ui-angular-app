@@ -19,28 +19,16 @@ export class ProfileUpdateComponent implements OnInit {
   fullName: string;
   errorMessage: string;
 
-  pageActionNgxSpinnerText:string;
+  pageActionNgxSpinnerText: string;
 
   @ViewChild('profileUpdateForm')
   profileUpdateForm: NgForm;
-
-  uploadMessage:string = "";
-  
-  @Output('userProfilePic')
-  landingPageProfilePic:string;
-
-  imageSrc: string;
-  profilePicUploadForm = new FormGroup({
-    file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])
-  });
 
   constructor(private httpUserProfileService: HttpUserProfileService,
     private ngxSpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    this.imageSrc = this.loggedInUser.gpsUsers.profilePic;
   }
 
   updateProfile() {
@@ -69,35 +57,4 @@ export class ProfileUpdateComponent implements OnInit {
       }
     );
   }
-
-
-  onFileChange(event) {
-    const reader = new FileReader();
-    if(event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.imageSrc = reader.result as string;
-        this.profilePicUploadForm.patchValue({
-          fileSource: reader.result
-        });
-      };
-    }
-  }
-
-  upload(){
-    this.pageActionNgxSpinnerText = "Uploading....";
-    this.ngxSpinnerService.show();
-    const formData = new FormData();
-    this.httpUserProfileService.uploadProfilePicInBody(this.loggedInUser.gpsUsers.userName, this.imageSrc).subscribe(
-      (response) => {
-        this.loggedInUser.gpsUsers.profilePic = this.imageSrc;
-        localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
-        this.uploadMessage = "Uploaded Successfully";
-        this.landingPageProfilePic = this.imageSrc;
-        this.ngxSpinnerService.hide();
-      }
-    );
-  }
-
 }

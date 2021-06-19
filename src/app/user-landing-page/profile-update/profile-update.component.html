@@ -1,98 +1,53 @@
 <div class="row">
-    <div class="col-lg-4 mb-4">
+    <!-- Content Column -->
+    <div class="col-lg-6 mb-4">
+
+        <!-- Project Card Example -->
         <div class="card shadow mb-4">
-            <!-- Card Header - Accordion -->
-            <a href="#personalDetailsCard" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button"
-                aria-expanded="false" aria-controls="personalDetailsCard">
-                <h6 class="m-0 font-weight-bold text-primary">Update personal details</h6>
-            </a>
-            <!-- Card Content - Collapse -->
-            <div class="collapse" id="personalDetailsCard">
-                <div class="card-body">
-                    <form class="user" (ngSubmit)="updateProfile()" #profileUpdateForm="ngForm">
-                        <div id="profileData" ngModelGroup="profileData">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="firstName"
-                                        name="p_firstName" [(ngModel)]="loggedInUser.gpsUsers.firstName"
-                                        #p_firstName="ngModel" 
-                                        placeholder="First Name" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" 
-                                        class="form-control form-control-user" 
-                                        id="lastName"
-                                        name="p_lastName" [(ngModel)]="loggedInUser.gpsUsers.lastName" 
-                                        #p_lastName="ngModel" 
-                                        placeholder="Last Name"
-                                        required>
-                                </div>
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"><i
+                    class="fas fa-user-edit"></i>&nbsp;&nbsp; Edit Personal Details</h6>
+            </div>
+            <div class="card-body">
+                <form class="user" (ngSubmit)="updateProfile()" #profileUpdateForm="ngForm">
+                    <div id="profileData" ngModelGroup="profileData">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control form-control-user" id="firstName"
+                                    name="p_firstName" [(ngModel)]="loggedInUser.gpsUsers.firstName"
+                                    #p_firstName="ngModel" placeholder="First Name" required>
                             </div>
-                            <div class="form-group">
-                                <input type="tel" class="form-control form-control-user" name="p_mobile"
-                                    [(ngModel)]="loggedInUser.gpsUsers.mobile" minlength="1" maxlength="10"
-                                    #p_mobile="ngModel" 
-                                    placeholder="mobile number">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-user" id="lastName"
+                                    name="p_lastName" [(ngModel)]="loggedInUser.gpsUsers.lastName" #p_lastName="ngModel"
+                                    placeholder="Last Name" required>
                             </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control form-control-user" name="p_email"
-                                #p_email="ngModel" 
-                                    [(ngModel)]="loggedInUser.gpsUsers.email" placeholder="email">
-                            </div>
-                            <div class="form-group">
-                                <textarea type="textarea" class="form-control form-control-user" 
-                                    name="p_address"
-                                    rows="2"
-                                    style="resize: none;"
-                                    #p_address="ngModel"  
-                                    [(ngModel)]="loggedInUser.gpsUsers.address"  
-                                    ngModel placeholder="address">{{loggedInUser.gpsUsers.address}}
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control form-control-user" name="p_mobile"
+                                [(ngModel)]="loggedInUser.gpsUsers.mobile" minlength="1" maxlength="10"
+                                #p_mobile="ngModel" placeholder="mobile number">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-user" name="p_email" #p_email="ngModel"
+                                [(ngModel)]="loggedInUser.gpsUsers.email" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                            <textarea type="textarea" class="form-control form-control-user" name="p_address" rows="2"
+                                style="resize: none;" #p_address="ngModel" [(ngModel)]="loggedInUser.gpsUsers.address"
+                                ngModel placeholder="address">{{loggedInUser.gpsUsers.address}}
                                 </textarea>
-                            </div>
-                            <p *ngIf = "errorMessage !== null" class="small" style="color: red;">{{errorMessage}}</p>
-                            <button class="btn btn-primary btn-user btn-block" type="submit"
-                                [disabled]="!(profileUpdateForm.dirty)">Update</button>
                         </div>
-                    </form>
-                </div>
+                        <p *ngIf="errorMessage !== null" class="small" style="color: red;">{{errorMessage}}</p>
+                        <button class="btn btn-primary btn-user btn-block" type="submit"
+                            [disabled]="!(profileUpdateForm.dirty)">Update</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <!--Profile picture Update -->
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <div class="col-lg-4 mb-4">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Accordion -->
-            <a href="#profilePicCard" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button"
-                aria-expanded="false" aria-controls="profilePicCard">
-                <h6 class="m-0 font-weight-bold text-primary">Update profile picture</h6>
-            </a>
-            <!-- Card Content - Collapse -->
-            <div class="collapse" id="profilePicCard">
-                <div class="card-body">
-                    <form class="user" (ngSubmit)="upload()" [formGroup]="profilePicUploadForm">
-                        <div class="form-group" style="text-align: center;">
-                            <img [src]="imageSrc" *ngIf="imageSrc" class="img-profile rounded-circle" style="width: 50%; height: 50%;">
-                        </div>
-                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input id="upload" type="file" (change)="onFileChange($event)" formControlName="file" class="form-control border-0">
-                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                            <div class="input-group-append">
-                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fas fa-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                            </div>
-                        </div> 
-                        <div class="form-group" style="text-align: center;">
-                            <p *ngIf = "errorMessage !== null" class="small" [ngStyle]="{'color':uploadMessage === 'Uploaded Successfully' ? 'green' : 'red' }">{{uploadMessage}}</p>
-                        </div>
-                        <button class="btn btn-primary btn-user btn-block" type="submit">Upload</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd"
-    type="ball-clip-rotate-pulse" [fullScreen]="true">
-    <p style="color: white">{{pageActionNgxSpinnerText}}</p>
-</ngx-spinner>
+    <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd" type="ball-clip-rotate-pulse"
+        [fullScreen]="false">
+        <p style="color: white">{{pageActionNgxSpinnerText}}</p>
+    </ngx-spinner>
 </div>

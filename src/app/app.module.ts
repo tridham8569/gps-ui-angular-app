@@ -18,6 +18,8 @@ import { HttpTokenInterceptor } from './user-landing-page/http-tokenInterceptor.
 import { MemberMaintenanceComponent } from './user-landing-page/member-maintenance/member-maintenance.component';
 import { MemberItemComponent } from './user-landing-page/member-maintenance/member-item/member-item.component';
 import { MemberItmesListComponent } from './user-landing-page/member-maintenance/member-itmes-list/member-itmes-list.component';
+import { UploadProfilePicComponent } from './user-landing-page/upload-profile-pic/upload-profile-pic.component';
+import { ImageCorpperComponent } from './user-landing-page/upload-profile-pic/image-corpper/image-corpper.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { MemberItmesListComponent } from './user-landing-page/member-maintenance
     WelcomeDashboardComponent,
     MemberMaintenanceComponent,
     MemberItemComponent,
-    MemberItmesListComponent
+    MemberItmesListComponent,
+    UploadProfilePicComponent,
+    ImageCorpperComponent
   ],
   imports: [
     BrowserModule,

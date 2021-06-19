@@ -1,5 +1,4 @@
 <div class="card shadow mb-4">
-    <!-- Card Header - Dropdown -->
     <div
         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">{{member.firstName}} {{member.lastName}}</h6>
@@ -46,20 +45,15 @@
             </div>
         </div>
     </div>
-    <!-- Card Body -->
     <div class="card-body">
-        <!-- <div class="row">
-            <img class="img-profile rounded-circle" 
-                    [src]="member.profilePic" 
-                    title="user_profile_pic" style="height: 20%; width: 20%;">
-        </div> -->
         <div class="row">
-            <div class="col">
+            <div class="col" style="text-align: center;">
                 <img class="img-profile rounded-circle" 
                     [src]="member.profilePic" 
                     title="user_profile_pic" style="height:10rem; width: 10rem;">
             </div>
             <div class="col small">
+                <br>
                 <p style="display: none;">{{member.userName}}</p>
                 <p>{{member.firstName}} {{member.lastName}}</p>
                 <p>Mobile: {{member.mobile}}</p>
