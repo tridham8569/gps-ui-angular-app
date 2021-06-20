@@ -8,26 +8,25 @@ import { MembersList } from "./member-maintenance/members-list.model";
     providedIn: "root"
 })
 export class HttpUserProfileService {
-    constructor(private http: HttpClient,
-                private gpsConstants:GPSConstans) {
+    constructor(private http: HttpClient) {
     }
 
     updateProfileDetails(loggedInUser:LoggedInUser){
        return this.http.post
-                (this.gpsConstants.gpsServerAppUrl+"users/"+loggedInUser.gpsUsers.userName+"/updateProfile",
+                (GPSConstans.GPS_SERVER_APP_URL+"users/"+loggedInUser.gpsUsers.userName+"/updateProfile",
                  loggedInUser.gpsUsers
                  );
     }
     
     uploadProfilePicInBody(userName:string, imageSrc:string){
-        return this.http.post<any>(this.gpsConstants.gpsServerAppUrl+"users/"+userName+"/uploadImage", imageSrc);
+        return this.http.post<any>(GPSConstans.GPS_SERVER_APP_URL+"users/"+userName+"/uploadImage", imageSrc);
      }
 
      getAllMemberProfiles(){
-        return this.http.get<MembersList>(this.gpsConstants.gpsServerAppUrl+"users/allUsers");
+        return this.http.get<MembersList>(GPSConstans.GPS_SERVER_APP_URL+"users/allUsers");
     }
 
     removeProfilePic(userName:string){
-        return this.http.get(this.gpsConstants.gpsServerAppUrl+"users/"+userName+"/removeProfilePic");
+        return this.http.get(GPSConstans.GPS_SERVER_APP_URL+"users/"+userName+"/removeProfilePic");
     }
 }

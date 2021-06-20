@@ -2,6 +2,8 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import Cropper from "cropperjs";
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
+import { LoggedInUserService } from 'src/app/logged-in-user.service';
 import { LoggedInUser } from 'src/app/loggedInUser.model';
 import { HttpUserProfileService } from '../../http-user-profile.service';
 import { UploadedImageService } from '../uploaded-image.service';
@@ -30,11 +32,12 @@ export class ImageCorpperComponent implements OnInit {
   constructor(private router:Router, 
               private imageService:UploadedImageService,
               private ngxSpinner:NgxSpinnerService,
-              private httpUserProfileService: HttpUserProfileService) { }
+              private httpUserProfileService: HttpUserProfileService,
+              private loggedInUserService:LoggedInUserService) { }
 
   ngOnInit(): void {
      this.imageSource = this.imageService.getImage();
-     this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+     this.loggedInUser = this.loggedInUserService.getLoggedInUser();
   }
   public ngAfterViewInit() {
     this.cropper = new Cropper(this.imageElement.nativeElement, {
@@ -55,7 +58,7 @@ export class ImageCorpperComponent implements OnInit {
     this.httpUserProfileService.uploadProfilePicInBody(this.loggedInUser.gpsUsers.userName, this.imageDestination).subscribe(
       (response) => {
         this.loggedInUser.gpsUsers.profilePic = this.imageDestination;
-        localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
+        this.loggedInUserService.setLoggedInUser(this.loggedInUser);
         this.ngxSpinner.hide();
         this.router.navigate(["/",this.loggedInUser.gpsUsers.userName]);
       }

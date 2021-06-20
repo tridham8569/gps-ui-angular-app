@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { LoggedInUserService } from '../logged-in-user.service';
 import { LoggedInUser } from '../loggedInUser.model';
 
 @Component({
@@ -9,20 +11,26 @@ import { LoggedInUser } from '../loggedInUser.model';
 })
 export class UserLandingPageComponent implements OnInit {
 
+  loggedInUserSubscription:Subscription;
   loggedInUser: LoggedInUser;
 
-  fullName: string;
-  userProfilePic: string;
+  //userProfilePic: string;
   defaultPics = { male: 'assets/img/profilePics/default_male.svg', female: 'assets/img/profilePics/default_female.svg' };
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, 
+              private route: ActivatedRoute,
+              private loggedInUserService:LoggedInUserService) {
     this.onToggle();
   }
 
   ngOnInit(): void {
     this.onToggle();
-    this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-
+    this.loggedInUser = this.loggedInUserService.getLoggedInUser();
+    this.loggedInUserSubscription = this.loggedInUserService.loggedInUserSubject.subscribe(
+      (data) =>{
+          this.loggedInUser = data;
+      }
+    );
     this.validateLocalStorageLogin();
     this.setProfile();
   }
@@ -41,12 +49,8 @@ export class UserLandingPageComponent implements OnInit {
   }
 
   setProfile() {
-    this.fullName = this.loggedInUser.gpsUsers.firstName + " " + this.loggedInUser.gpsUsers.lastName;
     if(this.loggedInUser.gpsUsers.profilePic === undefined || this.loggedInUser.gpsUsers.profilePic === null){
-      this.userProfilePic = this.loggedInUser.gpsUsers.gender == 'male' ? this.defaultPics.male : this.defaultPics.female;
-      this.loggedInUser.gpsUsers.profilePic = this.userProfilePic;
-    }else{
-      this.userProfilePic = this.loggedInUser.gpsUsers.profilePic;
+      this.loggedInUser.gpsUsers.profilePic  = this.loggedInUser.gpsUsers.gender == 'male' ? this.defaultPics.male : this.defaultPics.female;
     }
   }
 

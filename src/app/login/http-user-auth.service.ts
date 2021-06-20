@@ -1,7 +1,8 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { GPSConstans } from "../gps-constants.service";
+import { LoggedInUserService } from "../logged-in-user.service";
 import { LoggedInUser } from "../loggedInUser.model";
 import { NewUser } from "./create-account/newUser.model";
 
@@ -11,27 +12,25 @@ import { NewUser } from "./create-account/newUser.model";
 export class HttpUserAuthService{
 
     constructor(private http:HttpClient,
-                private gpsConstants:GPSConstans){
+                private loggedInUserService:LoggedInUserService){
 
     }
 
     login(userName:string, password:string){
-    return this.http.post<any>(this.gpsConstants.gpsServerAppUrl+'authenticate', {
+    return this.http.post<any>(GPSConstans.GPS_SERVER_APP_URL+'authenticate', {
             'userName': userName,
             'password': password
           }).pipe(map(
             (responseData)=>{
               localStorage.setItem('loggedInUser', JSON.stringify(responseData));
-              if(responseData.gpsUsers.profilePic !== undefined){
-                localStorage.setItem('LoggedInUserProfilePic',"data:image/jpeg;base64,"+responseData.gpsUsers.profilePic.data);
-              }
+              this.loggedInUserService.setLoggedInUser(responseData);
               return <LoggedInUser>responseData;
             }
           ));
     }
 
     register(newUserData: NewUser){
-      return this.http.post(this.gpsConstants.gpsServerAppUrl+'users/register',
+      return this.http.post(GPSConstans.GPS_SERVER_APP_URL+'users/register',
       newUserData);
     }
 }

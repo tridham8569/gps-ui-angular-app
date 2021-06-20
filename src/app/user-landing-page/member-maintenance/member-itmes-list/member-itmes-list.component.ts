@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { GPSConstans } from 'src/app/gps-constants.service';
 import { HttpUserProfileService } from '../../http-user-profile.service';
 import { Member } from '../member.model';
 import { MembersList } from '../members-list.model';
@@ -12,18 +13,26 @@ import { MembersList } from '../members-list.model';
 export class MemberItmesListComponent implements OnInit {
 
   membersList: [Member];
-  pageActionNgxSpinnerText:string;
+  pageActionNgxSpinnerText: string;
 
-  constructor(private httpUserProfileService:HttpUserProfileService,
-              private ngxSpinnerService: NgxSpinnerService) { }
+  constructor(private httpUserProfileService: HttpUserProfileService,
+    private ngxSpinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.membersList = JSON.parse(localStorage.getItem(GPSConstans.GPS_LOCAL_STORAGE_MEMBERS_LIST));
+    if (this.membersList === null) {
+      this.getMembersList();
+    }
+  }
+
+  getMembersList() {
     this.pageActionNgxSpinnerText = "Loading profiles...";
     this.ngxSpinnerService.show();
     this.httpUserProfileService.getAllMemberProfiles().subscribe(
-      (response:MembersList) => {
-          this.membersList = response.gpsUsersList;
-          this.ngxSpinnerService.hide();
+      (response: MembersList) => {
+        this.membersList = response.gpsUsersList;
+        //localStorage.setItem(GPSConstans.GPS_LOCAL_STORAGE_MEMBERS_LIST, JSON.stringify(this.membersList));
+        this.ngxSpinnerService.hide();
       }
     );
   }

@@ -38,16 +38,16 @@
                                 ngModel placeholder="address">{{loggedInUser.gpsUsers.address}}
                                 </textarea>
                         </div>
-                        <p *ngIf="errorMessage !== null" class="small" style="color: red;">{{errorMessage}}</p>
+                        <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="small" color="#0e0fbd" type="ball-clip-rotate-pulse"
+                        [fullScreen]="false">
+                        <p style="color: white">{{pageActionNgxSpinnerText}}</p>
+                    </ngx-spinner>
+                        <p *ngIf="errorMessage !== null" class="small" [ngStyle]="{'color': errorMessage === 'Updated Succesfully' ? 'green' : 'red' }">{{errorMessage}}</p>
                         <button class="btn btn-primary btn-user btn-block" type="submit"
-                            [disabled]="!(profileUpdateForm.dirty)">Update</button>
+                            [disabled]="!(profileUpdateForm.dirty) || (errorMessage !== undefined)">Update</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <ngx-spinner bdColor="rgba(33,148,213,0.86)" size="large" color="#0e0fbd" type="ball-clip-rotate-pulse"
-        [fullScreen]="false">
-        <p style="color: white">{{pageActionNgxSpinnerText}}</p>
-    </ngx-spinner>
 </div>

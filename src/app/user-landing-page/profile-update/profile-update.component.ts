@@ -1,8 +1,8 @@
-import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
-import { Component, Input, OnInit, Output, SystemJsNgModuleLoader, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { GPSConstans } from 'src/app/gps-constants.service';
+import { LoggedInUserService } from 'src/app/logged-in-user.service';
 import { LoggedInUser } from 'src/app/loggedInUser.model';
 import { HttpUserProfileService } from '../http-user-profile.service';
 
@@ -25,14 +25,14 @@ export class ProfileUpdateComponent implements OnInit {
   profileUpdateForm: NgForm;
 
   constructor(private httpUserProfileService: HttpUserProfileService,
-    private ngxSpinnerService: NgxSpinnerService) { }
+    private ngxSpinnerService: NgxSpinnerService,
+    private loggedInUserService:LoggedInUserService) { }
 
   ngOnInit(): void {
-    this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    this.loggedInUser = this.loggedInUserService.getLoggedInUser();
   }
 
   updateProfile() {
-    console.log(this.profileUpdateForm);
     this.pageActionNgxSpinnerText = "Updating....";
     this.ngxSpinnerService.show();
     this.httpUserProfileService.updateProfileDetails(this.loggedInUser).subscribe(
@@ -46,9 +46,9 @@ export class ProfileUpdateComponent implements OnInit {
         address?: string;
       }) => {
         this.loggedInUser.gpsUsers = response;
-        localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUser));
         this.ngxSpinnerService.hide();
-
+        this.errorMessage = "Updated Succesfully"
+        this.loggedInUserService.setLoggedInUser(this.loggedInUser);
       },
       (error: HttpErrorResponse) => {
         console.log(error);

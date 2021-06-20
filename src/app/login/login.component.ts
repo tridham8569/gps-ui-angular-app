@@ -4,6 +4,7 @@ import { Component, ErrorHandler, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LoggedInUserService } from '../logged-in-user.service';
 import { LoggedInUser } from '../loggedInUser.model';
 
 import { HttpUserAuthService } from './http-user-auth.service';
@@ -23,11 +24,12 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private route: ActivatedRoute,
-    private httpUserAuthService: HttpUserAuthService) { }
+    private httpUserAuthService: HttpUserAuthService,
+    private loggedInUserService:LoggedInUserService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('loggedInUser') != null) {
-      this.loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (this.loggedInUserService.getLoggedInUser() != null) {
+      this.loggedInUser = this.loggedInUserService.getLoggedInUser();
       if (this.route.snapshot.params['id'] === this.loggedInUser.gpsUsers.userName) {
         this.router.navigate(['/' + this.loggedInUser.gpsUsers.userName]);
       }
