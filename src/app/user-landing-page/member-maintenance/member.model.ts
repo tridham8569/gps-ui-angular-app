@@ -1,5 +1,5 @@
 export interface Member {
-    userName: 9177593309;
+    userName: string;
     firstName: string;
     lastName: string;
     mobile: string;

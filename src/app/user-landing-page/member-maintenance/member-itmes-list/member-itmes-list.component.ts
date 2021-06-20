@@ -3,7 +3,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { GPSConstans } from 'src/app/gps-constants.service';
 import { HttpUserProfileService } from '../../http-user-profile.service';
 import { Member } from '../member.model';
-import { MembersList } from '../members-list.model';
+import { MembersListService } from '../members-list.service';
 
 @Component({
   selector: 'app-member-itmes-list',
@@ -12,16 +12,25 @@ import { MembersList } from '../members-list.model';
 })
 export class MemberItmesListComponent implements OnInit {
 
-  membersList: [Member];
+  membersList: Member[];
   pageActionNgxSpinnerText: string;
 
   constructor(private httpUserProfileService: HttpUserProfileService,
-    private ngxSpinnerService: NgxSpinnerService) { }
+              private ngxSpinnerService: NgxSpinnerService,
+              private membersListService:MembersListService) { }
 
   ngOnInit(): void {
-    this.membersList = JSON.parse(localStorage.getItem(GPSConstans.GPS_LOCAL_STORAGE_MEMBERS_LIST));
-    if (this.membersList === null) {
+    this.membersList = this.membersListService.getMembersList();
+    if (this.membersListService.getMembersList() === undefined) {
       this.getMembersList();
+    }else{
+      const currentTime = new Date();
+      const loadTime = this.membersListService.getLoadTime();
+      if((currentTime.getTime()-loadTime.getTime()) < 600000){
+        this.membersList = this.membersListService.getMembersList();
+      }else{
+        this.getMembersList();
+      }
     }
   }
 
@@ -29,9 +38,9 @@ export class MemberItmesListComponent implements OnInit {
     this.pageActionNgxSpinnerText = "Loading profiles...";
     this.ngxSpinnerService.show();
     this.httpUserProfileService.getAllMemberProfiles().subscribe(
-      (response: MembersList) => {
+      (response) => {
         this.membersList = response.gpsUsersList;
-        //localStorage.setItem(GPSConstans.GPS_LOCAL_STORAGE_MEMBERS_LIST, JSON.stringify(this.membersList));
+        this.membersListService.setMembersList(this.membersList, new Date());
         this.ngxSpinnerService.hide();
       }
     );

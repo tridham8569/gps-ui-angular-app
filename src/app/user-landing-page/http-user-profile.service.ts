@@ -2,7 +2,6 @@ import { HttpClient} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { GPSConstans } from "../gps-constants.service";
 import { LoggedInUser } from "../loggedInUser.model";
-import { MembersList } from "./member-maintenance/members-list.model";
 
 @Injectable({
     providedIn: "root"
@@ -23,7 +22,7 @@ export class HttpUserProfileService {
      }
 
      getAllMemberProfiles(){
-        return this.http.get<MembersList>(GPSConstans.GPS_SERVER_APP_URL+"users/allUsers");
+        return this.http.get<any>(GPSConstans.GPS_SERVER_APP_URL+"users/allUsers");
     }
 
     removeProfilePic(userName:string){
