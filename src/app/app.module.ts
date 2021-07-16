@@ -20,6 +20,7 @@ import { MemberItemComponent } from './user-landing-page/member-maintenance/memb
 import { MemberItmesListComponent } from './user-landing-page/member-maintenance/member-itmes-list/member-itmes-list.component';
 import { UploadProfilePicComponent } from './user-landing-page/upload-profile-pic/upload-profile-pic.component';
 import { ImageCorpperComponent } from './user-landing-page/upload-profile-pic/image-corpper/image-corpper.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ImageCorpperComponent } from './user-landing-page/upload-profile-pic/im
     BrowserAnimationsModule,
     AppRoutesModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
